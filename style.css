@@ -1,0 +1,53 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  color: #fff;
+  background: #111;
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section {
+  width: calc(min(70vw, 500px));
+  margin: 0 auto;
+}
+
+form {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+}
+
+label,
+input[name="input"] {
+  display: block;
+}
+
+button,
+input[name="input"] {
+  padding: 0.5em 1.5em;
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+
+p {
+  max-width: 100%;
+  overflow: hidden;
+  line-break: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.message {
+  text-align: center;
+  color: #ddd;
+}

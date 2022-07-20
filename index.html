@@ -5,112 +5,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Encrypt Dcrypt</title>
+
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./script.js" defer></script>
 	</head>
 	<body>
-		<strong>Text :</strong>
-
-		<form name="ec-form" action="">
-			<input
-				onClick="this.setSelectionRange(0, this.value.length)"
-				type="text"
-				name="input"
-			/>
-
-			<label>
-				<input checked type="radio" name="method" value="btoa" />
-				Encrypt
-			</label>
-
-			<label>
-				<input type="radio" name="method" value="atob" />
-				Dcrypt
-			</label>
-
-			<button type="submit">Process</button>
-		</form>
-
-		<strong>Result :</strong>
-
-		<p class="result"></p>
-		<p class="message"></p>
-
-		<style>
-			* {
-				box-sizing: border-box;
-			}
-
-			body {
-				color: #fff;
-				background: #111;
-				display: grid;
-				gap: 1rem;
-				place-content: center;
-				min-height: 100vh;
-				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-			}
-
-			form {
-				display: grid;
-				gap: 1rem;
-				width: min(70vw, 500px);
-			}
-
-			label,
-			input[name="input"] {
-				display: block;
-			}
-
-			button,
-			input[name="input"] {
-				padding: 0.5em 1.5em;
-				width: 100%;
-				display: block;
-				border-radius: 5px;
-			}
-		</style>
-
-		<script defer>
-			const form = document.forms["ec-form"];
-
-			const result = document.querySelector(".result");
-
-			form.addEventListener("submit", (e) => {
-				e.preventDefault();
-
-				const { input, method } = [...new FormData(form)].reduce(
-					(acc, [key, val]) => ({ ...acc, [key]: val }),
-					{}
-				);
-
-				let output = "";
-
-				try {
-					output = window[method](String(input));
-				} catch (error) {
-					console.log(error);
-					output = error;
-				}
-
-				result.textContent = output;
-
-				result.addEventListener("click", () => {
-					const message = document.querySelector(".message");
-
-					navigator.clipboard
-						.writeText(output)
-						.then(() => {
-							message.textContent = "Copied to clipboard";
-						})
-						.catch((err) => {
-							message.textContent = "Copy Error";
-						})
-						.finally(() => {
-							setTimeout(() => {
-								message.textContent = "";
-							}, 1000);
-						});
-				});
-			});
-		</script>
+		<section>
+			<strong>Text :</strong>
+			<form name="ec-form" action="">
+				<input onClick="this.select()" type="text" name="input" />
+				<label>
+					<input checked type="radio" name="method" value="btoa" />
+					Encrypt
+				</label>
+				<label>
+					<input type="radio" name="method" value="atob" />
+					Dcrypt
+				</label>
+				<button type="submit">Process</button>
+			</form>
+			<strong>Result :</strong>
+			<p class="result"></p>
+			<p class="message"></p>
+		</section>
 	</body>
 </html>
